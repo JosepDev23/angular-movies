@@ -1,3 +1,13 @@
+<!--title-->
+<div class="container-title">
+    <div class="title">
+        <h1>angular-movies></h1>
+    </div>
+    <div class="title2">
+        <h1>_</h1>
+    </div>
+</div>
+
 <!--search bar-->
 <div class="search">
     <input type="text" class="search-bar" placeholder="Movie name" [formControl]="findMovie">
@@ -13,7 +23,11 @@
             </li>
         </ul>
     </div>
-    
+    <!--no movie-->
+    <div class="no-movie" *ngIf="movies === undefined || movies.length === 0">
+        <span class="no-movie-message">Please, search any movie</span>
+    </div>
+    <!--movie detail-->
     <div class="detail" *ngIf="detail">
         <app-movie-detail
             [movie]="this.selectedMovie"

@@ -16,7 +16,7 @@ export class MovieListComponent implements OnInit {
 
   detail = false;
 
-  movies: Movie[]= [];
+  movies: Movie[] = [];
   selectedMovie: ExtendedMovie = {
     Title: 'ERROR',
     Year: 'ERROR',
@@ -32,9 +32,8 @@ export class MovieListComponent implements OnInit {
   constructor(private movieService: MovieService) {
     this.findMovie.valueChanges.pipe(
       map(search  => search?.toLowerCase().replace(' ', '+')),
-      debounceTime(300),
+      debounceTime(200),
       distinctUntilChanged(),
-      filter(search => search !== ''),
       tap(search => this.movieService.getByTitle(search).subscribe(res => {
         this.movies = res.Search;
       }))
@@ -48,7 +47,9 @@ export class MovieListComponent implements OnInit {
     this.movieService.getByImdbID(movie.imdbID).subscribe(res => {
       this.selectedMovie = res;
     });
-    this.detail = true;
+    setTimeout(() => {
+      this.detail = true;
+    }, 200)
   }
 
 }
