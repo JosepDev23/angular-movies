@@ -1,0 +1,23 @@
+<!--search bar-->
+<div class="search">
+    <input type="text" class="search-bar" placeholder="Movie name" [formControl]="findMovie">
+</div>
+<div class="bottom-page">
+    <!--list of movies-->
+    <div class="list">
+        <ul>
+            <li *ngFor="let movie of movies">
+                <button type="button" (click)="onSelectMovie(movie)">
+                    <span class="name">{{movie.Title}}</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="detail" *ngIf="detail">
+        <app-movie-detail
+            [movie]="this.selectedMovie"
+        ></app-movie-detail>
+    </div>
+</div>
+
